@@ -12,6 +12,7 @@ The tables are designed as star schema as below so that it is flexible to analyz
 
 * Fact table: Songplay
 * Dimension table: Users, Songs, Artists, Time
+![Starchema](./Star_schema.png "StarSchema")
 
 
 ## DATASETS
