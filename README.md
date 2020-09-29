@@ -55,6 +55,6 @@ The tables are designed as star schema as below so that it is flexible to analyz
 	 GROUP BY t.year, t.month, a.aritst_name
 	 
 
-#### Free and Paid users ratio
+#### Free and Paid users number
 	 SELECT level, count(*) 
 	 FROM songplays GROUP BY level
