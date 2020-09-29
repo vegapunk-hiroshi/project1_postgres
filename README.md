@@ -12,8 +12,8 @@ The tables are designed as star schema as below so that it is flexible to analyz
 
 * Fact table: Songplay
 * Dimension table: Users, Songs, Artists, Time
-![Starchema](./Star_schema.png "StarSchema")
 
+![Starchema](./Star_schema.png "StarSchema")
 
 ## DATASETS
 * Subset of Million [Song Dataset](http://millionsongdataset.com/)
@@ -35,7 +35,7 @@ The tables are designed as star schema as below so that it is flexible to analyz
 2. Execute the "python etl.py" file in the Terminal to insert all records in the tables.
 3. Open "test.ipynb" and run each cell from the top. Check the results of each table if the table is created and the data is inserted properly.
 
-### EXAMPLE QUERIES(included in test.ipynb)
+### EXAMPLE QUERIES(included in example_query.ipynb)
 #### To know how many times each gender had listened to songs.
 
 	SELECT u.gender, count(s.songplay_id)
@@ -55,5 +55,6 @@ The tables are designed as star schema as below so that it is flexible to analyz
 	 GROUP BY t.year, t.month, a.aritst_name
 	 
 
-
-
+#### Free and Paid users ratio
+	 SELECT level, count(*) 
+	 FROM songplays GROUP BY level

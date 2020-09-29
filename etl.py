@@ -6,6 +6,11 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    
+    """
+    - Extract data from song file and insert into song and artist table
+    """
+    
     # open song file
     df = pd.read_json(filepath, lines=True)
     
@@ -14,7 +19,6 @@ def process_song_file(cur, filepath):
 
     cur.execute(song_table_insert, song_data)
     
-    
     # insert artist record
     artist_data = df[['artist_id', 'artist_name', 'artist_location', 'artist_latitude', 'artist_longitude']].values.tolist()[0]
     
@@ -22,6 +26,11 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    
+    """
+    - Extract data from log file and insert into time, user, songplays table
+    """
+    
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -41,7 +50,7 @@ def process_log_file(cur, filepath):
 
     # load user table
     user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']]
-
+    
     # insert user records
     for i, row in user_df.iterrows():
         cur.execute(user_table_insert, row)
@@ -65,6 +74,11 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    
+    """
+    - Get all json files and extract data to process.
+    """
+    
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -84,6 +98,11 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """
+    - Connect to sparkifydb and get cursor.
+    - Input directory of song and log file to process by process_data function
+    """
+    
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
